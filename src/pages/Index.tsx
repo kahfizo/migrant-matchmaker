@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Users, ClipboardList, FileText, UserCheck, Building2, Briefcase, Globe, CalendarCheck } from "lucide-react";
 
 const DashboardCard = ({ title, value, description, icon: Icon }: { title: string; value: string; description: string; icon: any }) => (
@@ -29,7 +30,10 @@ const Index = () => {
                 Selamat datang di Sistem Manajemen CPMI
               </p>
             </div>
-            <SidebarTrigger />
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <SidebarTrigger />
+            </div>
           </div>
           
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
