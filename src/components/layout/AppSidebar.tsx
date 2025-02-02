@@ -1,4 +1,4 @@
-import { Home, Users, ClipboardList, FileText, UserCheck } from "lucide-react";
+import { Home, Users, ClipboardList, FileText, UserCheck, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +16,7 @@ const menuItems = [
   { title: "Task Board", icon: ClipboardList, url: "/tasks" },
   { title: "Documents", icon: FileText, url: "/documents" },
   { title: "Attendance", icon: UserCheck, url: "/attendance" },
+  { title: "Settings", icon: Settings, url: "/settings" },
 ];
 
 export function AppSidebar() {
