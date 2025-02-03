@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { NavigationProvider } from "@/contexts/NavigationContext";
 import Index from "./pages/Index";
 import Registration from "./pages/Registration";
 import Tasks from "./pages/Tasks";
@@ -16,23 +17,25 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <ThemeProvider defaultTheme="system" storageKey="mwpc-theme">
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/attendance" element={<Attendance />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <NavigationProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/attendance" element={<Attendance />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </NavigationProvider>
   </ThemeProvider>
 );
 
