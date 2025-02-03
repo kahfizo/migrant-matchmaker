@@ -5,7 +5,7 @@ import { Settings as SettingsIcon, Database, Server, Bell, Layout } from "lucide
 import { useNavigation } from "@/contexts/NavigationContext";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/layout/AppHeader";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 const SettingsCard = ({ title, icon: Icon, children }: { title: string; icon: any; children: React.ReactNode }) => (
   <Card className="mb-6">
@@ -24,10 +24,7 @@ const Settings = () => {
 
   const handleNavigationChange = () => {
     toggleMode();
-    toast({
-      title: "Navigation mode updated",
-      description: `Switched to ${mode === 'sidebar' ? 'header' : 'sidebar'} navigation`,
-    });
+    toast(`Switched to ${mode === 'sidebar' ? 'header' : 'sidebar'} navigation`);
   };
 
   const content = (
@@ -116,20 +113,22 @@ const Settings = () => {
     </main>
   );
 
+  if (mode === 'header') {
+    return (
+      <div className="min-h-screen flex flex-col w-full">
+        <AppHeader />
+        {content}
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex w-full">
-      {mode === 'sidebar' ? (
-        <SidebarProvider>
-          <AppSidebar />
-          {content}
-        </SidebarProvider>
-      ) : (
-        <>
-          <AppHeader />
-          {content}
-        </>
-      )}
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        {content}
+      </div>
+    </SidebarProvider>
   );
 };
 
